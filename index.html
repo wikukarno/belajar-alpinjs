@@ -1,15 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Belajar AlpinJS</title>
-</head>
-<body>
-    
+  </head>
+  <body>
+    <div
+      x-data="{ open: false }"
+      class="container mx-auto text-center mt10 bg-lime-200 p-10 rounded-xl shadow w-1/2"
+    >
+      <!-- <h1 class="text-5xl font-bold bg-gradient-to-r from-blue-500 to-pink-400 bg-clip-text text-transparent drop-shadow-sm">
+            Hello, <span x-text="nama"></span>
+        </h1> -->
+      <!-- <h1 class="text-5xl font-bold bg-gradient-to-r from-blue-500 to-pink-400 bg-clip-text text-transparent drop-shadow-sm">
+            Hello, <span x-html="link"></span>
+        </h1> -->
+
+      <!-- versi x-show -->
+      <!-- <button @click="open = !open" x-text="open ? 'Tutup' : 'Buka'" class="py-2 px-5 bg-slate-600 text-white rounded-md">Buka</button>
+        <div x-show="open" class="w-3/4 mx-auto mt-4 p-5 bg-blue-400 rounded text-white">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta, dolores amet sit eveniet magni eius facere, molestiae quo dolore sunt accusamus eaque animi excepturi blanditiis, unde delectus. Sequi debitis aut, aliquid sint minus voluptates est distinctio. Quos facilis esse eius quidem quasi animi! Cupiditate, iusto quam. Quae ipsam iste at!
+        </div> -->
+      <!-- end versi x-show -->
+
+      <!-- versi x-if -->
+      <!-- <button
+        @click="open = !open"
+        x-text="open ? 'Tutup' : 'Buka'"
+        class="py-2 px-5 bg-slate-600 text-white rounded-md"
+      >
+        Buka
+      </button>
+      <template x-if="open">
+        <div class="w-3/4 mx-auto mt-4 p-5 bg-blue-400 rounded text-white">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta,
+          dolores amet sit eveniet magni eius facere, molestiae quo dolore sunt
+          accusamus eaque animi excepturi blanditiis, unde delectus. Sequi
+          debitis aut, aliquid sint minus voluptates est distinctio. Quos
+          facilis esse eius quidem quasi animi! Cupiditate, iusto quam. Quae
+          ipsam iste at!
+        </div>
+      </template> -->
+      <!-- end versi x-if -->
+
+      <!-- versi x-show with transition -->
+      <button
+        @click="open = !open"
+        x-text="open ? 'Tutup' : 'Buka'"
+        x-bind:class="open ? 'bg-red-500' : 'bg-blue-400'"
+        class="py-2 px-5 text-white rounded-md"
+        @click.outside="open = false"
+      >
+        Buka
+      </button>
+      <div
+        x-show="open"
+        x-transition.duration.1000ms
+        @keyup.esc.window="open = false"
+        class="w-3/4 mx-auto mt-4 p-5 bg-blue-400 rounded text-white"
+      >
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta,
+        dolores amet sit eveniet magni eius facere, molestiae quo dolore sunt
+        accusamus eaque animi excepturi blanditiis, unde delectus. Sequi debitis
+        aut, aliquid sint minus voluptates est distinctio. Quos facilis esse
+        eius quidem quasi animi! Cupiditate, iusto quam. Quae ipsam iste at!
+      </div>
+      <!-- end versi x-show with transition -->
+    </div>
+
+    <div
+      x-data="{ pesan: 'Hello World' }"
+      class="container mx-auto text-center mt10 bg-lime-200 p-10 rounded-xl shadow w-1/2 mt-20"
+    >
+      <button
+        @click="alert(pesan)"
+        class="py-2 px-5 text-white rounded-md bg-blue-400"
+      >
+        Klik Saya
+      </button>
+    </div>
+
+    <div
+      x-data="{ pesan: 'Hello World' }"
+      class="container mx-auto text-center mt10 bg-lime-200 p-10 rounded-xl shadow w-1/2 mt-20"
+    >
+        <label for="nama" class="text-sm font-medium text-grey-900 block mb-2"
+          >Masukkan Nama</label
+        >
+        <input
+            @keyup.debounce.750ms="console.log($event.target.value)"
+          type="text"
+          class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        />
+
+        <button 
+        @click.stop="alert('button di klik')"
+          class="py-2 px-5 text-white rounded-md bg-blue-400 mt-3"
+        >
+          Kirim
+        </button>
+    </div>
+
     <!-- script alpinejs  -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
     <!-- end script alpinejs  -->
-</body>
+  </body>
 </html>
