@@ -86,21 +86,62 @@
       x-data="{ pesan: 'Hello World' }"
       class="container mx-auto text-center mt10 bg-lime-200 p-10 rounded-xl shadow w-1/2 mt-20"
     >
-        <label for="nama" class="text-sm font-medium text-grey-900 block mb-2"
-          >Masukkan Nama</label
-        >
-        <input
-            @keyup.debounce.750ms="console.log($event.target.value)"
-          type="text"
-          class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        />
+      <label for="nama" class="text-sm font-medium text-grey-900 block mb-2"
+        >Masukkan Nama</label
+      >
+      <input
+        @keyup.debounce.750ms="console.log($event.target.value)"
+        type="text"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      />
 
-        <button 
+      <button
         @click.stop="alert('button di klik')"
-          class="py-2 px-5 text-white rounded-md bg-blue-400 mt-3"
-        >
-          Kirim
-        </button>
+        class="py-2 px-5 text-white rounded-md bg-blue-400 mt-3"
+      >
+        Kirim
+      </button>
+    </div>
+
+    <div
+      x-data="{ pesan: '', open: true, hobby:[] }"
+      class="container mx-auto text-center mt10 bg-lime-200 p-10 rounded-xl shadow w-1/2 mt-20"
+    >
+      <label for="nama" class="text-sm font-medium text-grey-900 block mb-2"
+        >Masukkan Pesan</label
+      >
+      <textarea
+        x-model="pesan"
+        type="text"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      ></textarea>
+
+      <span
+        x-text="pesan.length"
+        class="text-lg flex text-green-500 font-bold"
+        :class="pesan.length > 10 ? 'text-red-500' : 'text-green-500'"
+      ></span>
+
+      <input type="checkbox" id="checkbox" x-model="open" />
+      <label for="checkbox" x-text="!open ? 'Kosong' : 'Terisi'"></label>
+      
+      <div class="mt-5">
+        <div class="flex items-center mb-2">
+          <input type="checkbox" x-model="hobby" id="menulis" value="menulis" class="w-4 h-4 text-blue-600 border-gray-300 rounded" />
+          <label for="menulis" class="ml-2 text-sm">Menulis</label>
+        </div>
+        <div class="flex items-center mb-2">
+          <input type="checkbox" x-model="hobby" id="menyanyi" value="menyanyi" class="w-4 h-4 text-blue-600 border-gray-300 rounded" />
+          <label for="menyanyi" class="ml-2 text-sm">Menyanyi</label>
+        </div>
+        <div class="flex items-center mb-2">
+          <input type="checkbox" x-model="hobby" id="ngoding" value="ngoding" class="w-4 h-4 text-blue-600 border-gray-300 rounded" />
+          <label for="ngoding" class="ml-2 text-sm">Ngoding</label>
+        </div>
+      </div>
+      <p class="text-left text-sm">
+        Hobby yang di pilih : <span x-text="hobby.map(h => h.charAt(0).toUpperCase() + h.slice(1))"></span>
+      </p>
     </div>
 
     <!-- script alpinejs  -->
